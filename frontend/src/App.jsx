@@ -217,7 +217,11 @@ function App() {
                     title={task.completed ? 'Undo' : 'Mark as done'}
                     onClick={() => toggleComplete(task._id, task.completed)}
                   >
-                    {task.completed ? '↺' : '✓'}
+                    {task.completed ? (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 7v6h6"></path><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"></path></svg>
+                    ) : (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    )}
                   </button>
                   {!task.completed && (
                     <button
@@ -226,7 +230,7 @@ function App() {
                       title="Edit task"
                       onClick={() => startEdit(task)}
                     >
-                      ✎
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                     </button>
                   )}
                   <button
@@ -235,7 +239,7 @@ function App() {
                     title="Delete task"
                     onClick={() => deleteTask(task._id)}
                   >
-                    ✕
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                   </button>
                 </div>
               </>
@@ -251,7 +255,9 @@ function App() {
 
         {tasks.length === 0 && (
           <div className="empty-state">
-            <div className="empty-state-icon">✨</div>
+            <div className="empty-state-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+            </div>
             <p>You're all caught up! Create a new task above.</p>
           </div>
         )}
