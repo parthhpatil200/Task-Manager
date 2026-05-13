@@ -18,12 +18,14 @@ app.use('/api/tasks', taskRoutes);
 // If using 1 VM: uncomment these AND run 'npm run build' in frontend first
 // NOTE: Vite builds to 'dist/', NOT 'build/' like CRA
 
-// Serve Vite build (dist)
-app.use(express.static(path.join(__dirname, "../frontend/dist")));
+//-----------comment them if we need to use 2 vm
+//if only one vm uncomment these (Vite builds to 'dist/', NOT 'build/')
 
-app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
-});
+// app.use(express.static(path.join(__dirname, "../frontend/dist")));
+
+// app.use((req, res) => {
+//   res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+// });
 
 // Database connection
 const connectDB = async () => {
