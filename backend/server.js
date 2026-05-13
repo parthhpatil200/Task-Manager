@@ -14,10 +14,15 @@ app.use(express.json());
 
 app.use('/api/tasks', taskRoutes);
 
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+// -----------comment these if using 2 separate VMs (backend VM + frontend VM)
+// If using 1 VM: uncomment these AND run 'npm run build' in frontend first
+// NOTE: Vite builds to 'dist/', NOT 'build/' like CRA
+
+// Serve Vite build (dist)
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 app.use((req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });
 
 // Database connection
@@ -28,20 +33,15 @@ const connectDB = async () => {
       return;
     }
     await mongoose.connect(process.env.MONGO_URI);
-    console.log('MongoDB connected successfully');
+    console.log('✅ Connected to MongoDB Atlas');
   } catch (error) {
-    console.error('MongoDB connection error:', error);
+    console.error('❌ MongoDB connection error:', error);
     process.exit(1);
   }
 };
 
 connectDB();
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
-
-//custom tcp 5000
-// sudo apt update
-// curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-// sudo apt install -y nodejs git
