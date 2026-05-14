@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './index.css';
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://YOUR_PUBLIC_IP:5000/api/tasks';
+const API_URL = import.meta.env.VITE_API_URL || 'http://43.205.208.165:5000/api/tasks';
 
 // ── Constants ─────────────────────────────────────────────
 const PRIORITIES      = ['low', 'medium', 'high'];
